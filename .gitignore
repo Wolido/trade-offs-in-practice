@@ -17,3 +17,6 @@ Thumbs.db
 .idea/
 *.sublime-project
 *.sublime-workspace
+
+# Internal writing guide (author + AI assistant working spec, not published)
+WRITING-GUIDE.md
