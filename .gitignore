@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Editor temp files
+*.swp
+*.swo
+*~
+*.bak
+*.tmp
+.~lock.*
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
