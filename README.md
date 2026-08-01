@@ -26,14 +26,14 @@
 
 ### 智能体工程（agents/）
 
-- [《主智能体的能力约束：为什么规划者不应该有执行权限》](./agents/01-capability-constraint.md) — 关于硬剥夺主 agent 的 write/edit/bash 权限、让委派成为唯一出路的架构决策与理由。
-- [《上下文里的"行动残渣"：为什么写操作比读操作更污染》](./agents/02-context-residue.md) — 关于 write/edit/bash 产生的低价值上下文残留，以及主 agent 上下文保洁的实践。
-- [《Skill 的作用域隔离：让每个智能体只看见自己需要的技能》](./agents/03-skill-isolation.md) — 关于 skill 按角色静态分区、互相不可见的做法和动机。
-- [《为什么主流框架不做硬隔离》](./agents/04-why-mainstream-does-not.md) — 分析 Codex、Claude Code 等商业框架在隔离 trade-off 上选择另一端的原因。
+- [《主智能体的能力约束：为什么规划者不应该有执行权限》](./agents/capability-constraint.md) — 关于硬剥夺主 agent 的 write/edit/bash 权限、让委派成为唯一出路的架构决策与理由。
+- [《上下文里的"行动残渣"：为什么写操作比读操作更污染》](./agents/context-residue.md) — 关于 write/edit/bash 产生的低价值上下文残留，以及主 agent 上下文保洁的实践。
+- [《Skill 的作用域隔离：让每个智能体只看见自己需要的技能》](./agents/skill-isolation.md) — 关于 skill 按角色静态分区、互相不可见的做法和动机。
+- [《为什么主流框架不做硬隔离》](./agents/why-mainstream-does-not.md) — 分析 Codex、Claude Code 等商业框架在隔离 trade-off 上选择另一端的原因。
 
 ### AI 辅助材料研究（ai4mat/）
 
-- [《一个材料研究者的智能体工作流》](./ai4mat/01-a-material-researchers-agent-workflow.md) — 记录真实科研日常中 agent 的使用方式与边界。
+- [《一个材料研究者的智能体工作流》](./ai4mat/a-material-researchers-agent-workflow.md) — 记录真实科研日常中 agent 的使用方式与边界。
 
 ## 说明
 
