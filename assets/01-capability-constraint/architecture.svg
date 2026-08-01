@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" width="800" font-family="system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <title>硬约束多智能体架构：主智能体仅规划，子智能体在相互隔离的容器中执行</title>
+
+  <defs>
+    <!-- 向下委派箭头：refX=0，底边在 x=0、尖端在 x=8，线端点连接箭头底边中点 -->
+    <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/>
+    </marker>
+    <!-- 向上摘要箭头：同上，灰色 -->
+    <marker id="arr-gray" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <!-- 背景（白色卡片，GitHub 深色模式下依然可读） -->
+  <rect width="800" height="620" fill="#ffffff"/>
+  <rect x="1" y="1" width="798" height="618" rx="8" fill="none" stroke="#e2e8f0"/>
+
+  <!-- ============ 上层：主智能体（规划者） ============ -->
+  <g>
+    <rect x="130" y="40" width="540" height="150" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <path d="M138,40 H662 A8,8 0 0 1 670,48 V74 H130 V48 A8,8 0 0 1 138,40 Z" fill="#2563eb"/>
+    <text x="400" y="63" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff">主智能体（规划者）</text>
+
+    <!-- 可用工具 -->
+    <text x="228" y="105" font-size="14" fill="#334155">可用工具</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13">
+      <rect x="304" y="90" width="44" height="22" rx="4" fill="#dbeafe" stroke="#93c5fd"/>
+      <text x="326" y="105" text-anchor="middle" fill="#1e40af">read</text>
+      <rect x="356" y="90" width="28" height="22" rx="4" fill="#dbeafe" stroke="#93c5fd"/>
+      <text x="370" y="105" text-anchor="middle" fill="#1e40af">ls</text>
+      <rect x="392" y="90" width="44" height="22" rx="4" fill="#dbeafe" stroke="#93c5fd"/>
+      <text x="414" y="105" text-anchor="middle" fill="#1e40af">grep</text>
+      <rect x="444" y="90" width="44" height="22" rx="4" fill="#dbeafe" stroke="#93c5fd"/>
+      <text x="466" y="105" text-anchor="middle" fill="#1e40af">find</text>
+      <rect x="496" y="90" width="76" height="22" rx="4" fill="#dbeafe" stroke="#93c5fd"/>
+      <text x="534" y="105" text-anchor="middle" fill="#1e40af">subagent</text>
+    </g>
+
+    <!-- 已剥夺的工具（强调红 + 删除线） -->
+    <text x="216" y="137" font-size="14" fill="#334155">已剥夺</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13">
+      <rect x="278" y="122" width="52" height="22" rx="4" fill="#fee2e2" stroke="#fca5a5"/>
+      <text x="304" y="137" text-anchor="middle" fill="#dc2626">write</text>
+      <line x1="282" y1="133" x2="326" y2="133" stroke="#dc2626" stroke-width="1.5"/>
+      <rect x="338" y="122" width="44" height="22" rx="4" fill="#fee2e2" stroke="#fca5a5"/>
+      <text x="360" y="137" text-anchor="middle" fill="#dc2626">edit</text>
+      <line x1="342" y1="133" x2="378" y2="133" stroke="#dc2626" stroke-width="1.5"/>
+      <rect x="390" y="122" width="44" height="22" rx="4" fill="#fee2e2" stroke="#fca5a5"/>
+      <text x="412" y="137" text-anchor="middle" fill="#dc2626">bash</text>
+      <line x1="394" y1="133" x2="430" y2="133" stroke="#dc2626" stroke-width="1.5"/>
+    </g>
+    <text x="450" y="137" font-size="14" fill="#dc2626">（无写入与执行能力）</text>
+
+    <text x="400" y="170" text-anchor="middle" font-size="14" fill="#64748b">不直接操作文件与 shell，仅通过 subagent 委派执行任务</text>
+  </g>
+
+  <!-- ============ 委派 / 摘要箭头（跨越隔离边界） ============ -->
+  <g stroke-width="2" fill="none">
+    <!-- 委派：蓝色实线向下，尖端顶住子智能体容器上边缘（y=310） -->
+    <line x1="138" y1="190" x2="138" y2="302" stroke="#2563eb" marker-end="url(#arr-blue)"/>
+    <line x1="390" y1="190" x2="390" y2="302" stroke="#2563eb" marker-end="url(#arr-blue)"/>
+    <line x1="642" y1="190" x2="642" y2="302" stroke="#2563eb" marker-end="url(#arr-blue)"/>
+    <!-- 摘要：灰色虚线向上，尖端顶住主智能体下边缘（y=190）；长度 112 = 9×12+4，末端 dash 与 marker 底边无缝衔接 -->
+    <line x1="158" y1="310" x2="158" y2="198" stroke="#64748b" stroke-dasharray="7 5" marker-end="url(#arr-gray)"/>
+    <line x1="410" y1="310" x2="410" y2="198" stroke="#64748b" stroke-dasharray="7 5" marker-end="url(#arr-gray)"/>
+    <line x1="662" y1="310" x2="662" y2="198" stroke="#64748b" stroke-dasharray="7 5" marker-end="url(#arr-gray)"/>
+  </g>
+  <g font-size="14">
+    <text x="130" y="224" text-anchor="end" fill="#2563eb">委派</text>
+    <text x="382" y="224" text-anchor="end" fill="#2563eb">委派</text>
+    <text x="634" y="224" text-anchor="end" fill="#2563eb">委派</text>
+    <text x="166" y="284" text-anchor="start" fill="#64748b">摘要</text>
+    <text x="418" y="284" text-anchor="start" fill="#64748b">摘要</text>
+    <text x="670" y="284" text-anchor="start" fill="#64748b">摘要</text>
+  </g>
+
+  <!-- ============ 进程隔离边界 ============ -->
+  <line x1="24" y1="250" x2="776" y2="250" stroke="#64748b" stroke-width="2" stroke-dasharray="10 7"/>
+  <rect x="209" y="237" width="130" height="26" rx="4" fill="#f1f5f9" stroke="#64748b"/>
+  <text x="274" y="255" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">进程隔离边界</text>
+
+  <!-- ============ 下层：三个相互隔离的子智能体容器 ============ -->
+  <!-- coder -->
+  <g>
+    <rect x="40" y="310" width="216" height="230" rx="8" fill="#ffffff" stroke="#64748b" stroke-width="1.5"/>
+    <path d="M48,310 H248 A8,8 0 0 1 256,318 V344 H40 V318 A8,8 0 0 1 48,310 Z" fill="#64748b"/>
+    <text x="148" y="332" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="bold" fill="#ffffff">coder</text>
+
+    <text x="52" y="366" font-size="14" fill="#334155">角色：代码实现与调试</text>
+    <text x="52" y="388" font-size="14" fill="#64748b">工具</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13">
+      <rect x="52" y="396" width="44" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="74" y="411" text-anchor="middle" fill="#334155">read</text>
+      <rect x="104" y="396" width="52" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="130" y="411" text-anchor="middle" fill="#334155">write</text>
+      <rect x="164" y="396" width="44" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="186" y="411" text-anchor="middle" fill="#334155">edit</text>
+      <rect x="52" y="424" width="44" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="74" y="439" text-anchor="middle" fill="#334155">bash</text>
+    </g>
+    <text x="52" y="468" font-size="14" fill="#64748b">skill</text>
+    <rect x="52" y="476" width="168" height="22" rx="4" fill="#ffffff" stroke="#64748b" stroke-dasharray="4 3"/>
+    <text x="136" y="491" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#334155">systematic-debugging</text>
+    <text x="52" y="524" font-size="14" fill="#64748b">唯一持有执行（bash）权限</text>
+  </g>
+
+  <!-- reviewer -->
+  <g>
+    <rect x="292" y="310" width="216" height="230" rx="8" fill="#ffffff" stroke="#64748b" stroke-width="1.5"/>
+    <path d="M300,310 H500 A8,8 0 0 1 508,318 V344 H292 V318 A8,8 0 0 1 300,310 Z" fill="#64748b"/>
+    <text x="400" y="332" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="bold" fill="#ffffff">reviewer</text>
+
+    <text x="304" y="366" font-size="14" fill="#334155">角色：代码评审与反馈</text>
+    <text x="304" y="388" font-size="14" fill="#64748b">工具</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13">
+      <rect x="304" y="396" width="44" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="326" y="411" text-anchor="middle" fill="#334155">read</text>
+      <rect x="356" y="396" width="28" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="370" y="411" text-anchor="middle" fill="#334155">ls</text>
+      <rect x="392" y="396" width="44" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="414" y="411" text-anchor="middle" fill="#334155">grep</text>
+      <rect x="304" y="424" width="44" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="326" y="439" text-anchor="middle" fill="#334155">find</text>
+    </g>
+    <text x="304" y="468" font-size="14" fill="#64748b">skill</text>
+    <text x="304" y="491" font-size="14" fill="#94a3b8">（无）</text>
+    <text x="304" y="524" font-size="14" fill="#64748b">只读：不能修改任何文件</text>
+  </g>
+
+  <!-- writer -->
+  <g>
+    <rect x="544" y="310" width="216" height="230" rx="8" fill="#ffffff" stroke="#64748b" stroke-width="1.5"/>
+    <path d="M552,310 H752 A8,8 0 0 1 760,318 V344 H544 V318 A8,8 0 0 1 552,310 Z" fill="#64748b"/>
+    <text x="652" y="332" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" font-weight="bold" fill="#ffffff">writer</text>
+
+    <text x="556" y="366" font-size="14" fill="#334155">角色：文档撰写与修订</text>
+    <text x="556" y="388" font-size="14" fill="#64748b">工具</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13">
+      <rect x="556" y="396" width="44" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="578" y="411" text-anchor="middle" fill="#334155">read</text>
+      <rect x="608" y="396" width="52" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="634" y="411" text-anchor="middle" fill="#334155">write</text>
+      <rect x="668" y="396" width="44" height="22" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="690" y="411" text-anchor="middle" fill="#334155">edit</text>
+    </g>
+    <text x="556" y="468" font-size="14" fill="#64748b">skill</text>
+    <rect x="556" y="476" width="68" height="22" rx="4" fill="#ffffff" stroke="#64748b" stroke-dasharray="4 3"/>
+    <text x="590" y="491" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#334155">writing</text>
+    <text x="556" y="524" font-size="14" fill="#64748b">可读写编辑，但无 bash</text>
+  </g>
+
+  <!-- ============ 图例 ============ -->
+  <g>
+    <line x1="296" y1="566" x2="328" y2="566" stroke="#2563eb" stroke-width="2" marker-end="url(#arr-blue)"/>
+    <text x="342" y="570" font-size="14" fill="#334155">委派任务</text>
+    <line x1="424" y1="566" x2="455" y2="566" stroke="#64748b" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arr-gray)"/>
+    <text x="469" y="570" font-size="14" fill="#334155">返回摘要</text>
+  </g>
+
+  <text x="400" y="594" text-anchor="middle" font-size="14" fill="#64748b">注：三个子智能体运行在相互隔离的容器中，互不可见；跨边界仅传递任务与返回摘要。</text>
+</svg>
