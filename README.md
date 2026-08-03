@@ -33,7 +33,7 @@
 
 ### AI 辅助材料研究（ai4mat/）
 
-- [《一个材料研究者的智能体工作流》](./ai4mat/a-material-researchers-agent-workflow.md) — 记录真实科研日常中 agent 的使用方式与边界。
+- [《材料领域应该用什么数据库》](./ai4mat/materials-database-selection.md) — 材料研究中的数据存储与数据库选型。
 
 ## 说明
 
