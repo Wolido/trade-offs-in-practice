@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="960" font-family="system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <title>同一张材料数据表：行存储（按行连续存放）与列存储（按列连续存放）对比</title>
+
+  <defs>
+    <!-- 灰色箭头：refX=0，底边在 x=0、尖端在 x=8，线端点连接底边中点 -->
+    <marker id="arr-gray" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/>
+    </marker>
+    <!-- 蓝色箭头：同上 -->
+    <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <!-- 背景（白色卡片，GitHub 深色模式下依然可读） -->
+  <rect width="960" height="500" fill="#ffffff"/>
+  <rect x="1" y="1" width="958" height="498" rx="8" fill="none" stroke="#e2e8f0"/>
+
+  <!-- 顶部总注 -->
+  <text x="480" y="36" text-anchor="middle" font-size="14" fill="#64748b">同一张材料数据表 · 两种物理存放方式</text>
+
+  <!-- 左右分隔虚线 -->
+  <line x1="480" y1="96" x2="480" y2="320" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- ==================== 左半：行存储（灰系） ==================== -->
+  <text x="248" y="74" text-anchor="middle" font-size="17" font-weight="bold" fill="#334155">行存储（SQLite）</text>
+  <text x="248" y="100" text-anchor="middle" font-size="13" fill="#64748b">每条记录（一整行）在磁盘上连续存放</text>
+
+  <!-- 列名表头（与右半相同，体现"同一张表"） -->
+  <g font-size="13" fill="#64748b" text-anchor="middle">
+    <text x="104" y="126">样品ID</text>
+    <text x="200" y="126">温度</text>
+    <text x="296" y="126">强度</text>
+    <text x="392" y="126">电导率</text>
+  </g>
+
+  <!-- 行 1：S001，一个横条 = 一条记录，条内小格紧挨（物理连续） -->
+  <g>
+    <rect x="56" y="136" width="384" height="40" rx="4" fill="#f8fafc" stroke="#cbd5e1"/>
+    <line x1="152" y1="136" x2="152" y2="176" stroke="#e2e8f0"/>
+    <line x1="248" y1="136" x2="248" y2="176" stroke="#e2e8f0"/>
+    <line x1="344" y1="136" x2="344" y2="176" stroke="#e2e8f0"/>
+    <g font-size="13" fill="#334155" text-anchor="middle">
+      <text x="104" y="161">S001</text>
+      <text x="200" y="161">500</text>
+      <text x="296" y="161">82.3</text>
+      <text x="392" y="161">0.42</text>
+    </g>
+  </g>
+
+  <!-- 行 2：S002（高亮：实体访问示例，一次取回整行） -->
+  <g>
+    <rect x="56" y="184" width="384" height="40" rx="4" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+    <line x1="152" y1="184" x2="152" y2="224" stroke="#94a3b8"/>
+    <line x1="248" y1="184" x2="248" y2="224" stroke="#94a3b8"/>
+    <line x1="344" y1="184" x2="344" y2="224" stroke="#94a3b8"/>
+    <g font-size="13" fill="#334155" text-anchor="middle">
+      <text x="104" y="209">S002</text>
+      <text x="200" y="209">600</text>
+      <text x="296" y="209">78.1</text>
+      <text x="392" y="209">0.51</text>
+    </g>
+  </g>
+
+  <!-- 行 3：S003 -->
+  <g>
+    <rect x="56" y="232" width="384" height="40" rx="4" fill="#f8fafc" stroke="#cbd5e1"/>
+    <line x1="152" y1="232" x2="152" y2="272" stroke="#e2e8f0"/>
+    <line x1="248" y1="232" x2="248" y2="272" stroke="#e2e8f0"/>
+    <line x1="344" y1="232" x2="344" y2="272" stroke="#e2e8f0"/>
+    <g font-size="13" fill="#334155" text-anchor="middle">
+      <text x="104" y="257">S003</text>
+      <text x="200" y="257">700</text>
+      <text x="296" y="257">74.6</text>
+      <text x="392" y="257">0.63</text>
+    </g>
+  </g>
+
+  <!-- 行 4：S004 -->
+  <g>
+    <rect x="56" y="280" width="384" height="40" rx="4" fill="#f8fafc" stroke="#cbd5e1"/>
+    <line x1="152" y1="280" x2="152" y2="320" stroke="#e2e8f0"/>
+    <line x1="248" y1="280" x2="248" y2="320" stroke="#e2e8f0"/>
+    <line x1="344" y1="280" x2="344" y2="320" stroke="#e2e8f0"/>
+    <g font-size="13" fill="#334155" text-anchor="middle">
+      <text x="104" y="305">S004</text>
+      <text x="200" y="305">800</text>
+      <text x="296" y="305">69.9</text>
+      <text x="392" y="305">0.78</text>
+    </g>
+  </g>
+
+  <!-- ==================== 右半：列存储（蓝系） ==================== -->
+  <text x="712" y="74" text-anchor="middle" font-size="17" font-weight="bold" fill="#2563eb">列存储（DuckDB）</text>
+  <text x="712" y="100" text-anchor="middle" font-size="13" fill="#64748b">每一列在磁盘上连续存放</text>
+
+  <!-- 列名表头（与左半相同；"强度"列高亮） -->
+  <g font-size="13" text-anchor="middle">
+    <text x="568" y="126" fill="#64748b">样品ID</text>
+    <text x="664" y="126" fill="#64748b">温度</text>
+    <text x="760" y="126" fill="#2563eb" font-weight="bold">强度</text>
+    <text x="856" y="126" fill="#64748b">电导率</text>
+  </g>
+
+  <!-- 列 1：样品ID，一个竖条 = 一列，条内小格紧挨（物理连续） -->
+  <g>
+    <rect x="524" y="136" width="88" height="184" rx="4" fill="#eff6ff" stroke="#93c5fd"/>
+    <line x1="524" y1="182" x2="612" y2="182" stroke="#bfdbfe"/>
+    <line x1="524" y1="228" x2="612" y2="228" stroke="#bfdbfe"/>
+    <line x1="524" y1="274" x2="612" y2="274" stroke="#bfdbfe"/>
+    <g font-size="13" fill="#334155" text-anchor="middle">
+      <text x="568" y="164">S001</text>
+      <text x="568" y="210">S002</text>
+      <text x="568" y="256">S003</text>
+      <text x="568" y="302">S004</text>
+    </g>
+  </g>
+
+  <!-- 列 2：温度 -->
+  <g>
+    <rect x="620" y="136" width="88" height="184" rx="4" fill="#eff6ff" stroke="#93c5fd"/>
+    <line x1="620" y1="182" x2="708" y2="182" stroke="#bfdbfe"/>
+    <line x1="620" y1="228" x2="708" y2="228" stroke="#bfdbfe"/>
+    <line x1="620" y1="274" x2="708" y2="274" stroke="#bfdbfe"/>
+    <g font-size="13" fill="#334155" text-anchor="middle">
+      <text x="664" y="164">500</text>
+      <text x="664" y="210">600</text>
+      <text x="664" y="256">700</text>
+      <text x="664" y="302">800</text>
+    </g>
+  </g>
+
+  <!-- 列 3：强度（高亮：列分析示例，只扫这一列） -->
+  <g>
+    <rect x="716" y="136" width="88" height="184" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <line x1="716" y1="182" x2="804" y2="182" stroke="#93c5fd"/>
+    <line x1="716" y1="228" x2="804" y2="228" stroke="#93c5fd"/>
+    <line x1="716" y1="274" x2="804" y2="274" stroke="#93c5fd"/>
+    <g font-size="13" fill="#1e40af" text-anchor="middle">
+      <text x="760" y="164">82.3</text>
+      <text x="760" y="210">78.1</text>
+      <text x="760" y="256">74.6</text>
+      <text x="760" y="302">69.9</text>
+    </g>
+  </g>
+
+  <!-- 列 4：电导率 -->
+  <g>
+    <rect x="812" y="136" width="88" height="184" rx="4" fill="#eff6ff" stroke="#93c5fd"/>
+    <line x1="812" y1="182" x2="900" y2="182" stroke="#bfdbfe"/>
+    <line x1="812" y1="228" x2="900" y2="228" stroke="#bfdbfe"/>
+    <line x1="812" y1="274" x2="900" y2="274" stroke="#bfdbfe"/>
+    <g font-size="13" fill="#334155" text-anchor="middle">
+      <text x="856" y="164">0.42</text>
+      <text x="856" y="210">0.51</text>
+      <text x="856" y="256">0.63</text>
+      <text x="856" y="302">0.78</text>
+    </g>
+  </g>
+
+  <!-- ==================== 标注框（箭头尖端顶住框上边缘） ==================== -->
+  <line x1="248" y1="324" x2="248" y2="334" stroke="#64748b" stroke-width="2" marker-end="url(#arr-gray)"/>
+  <line x1="712" y1="324" x2="712" y2="334" stroke="#2563eb" stroke-width="2" marker-end="url(#arr-blue)"/>
+
+  <rect x="56" y="342" width="384" height="44" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="248" y="369" text-anchor="middle" font-size="14" fill="#334155">适合：给我看 S002 的完整信息（实体访问）</text>
+
+  <rect x="524" y="342" width="376" height="44" rx="6" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="712" y="369" text-anchor="middle" font-size="14" fill="#1e40af">适合：所有样品的强度分布（列分析）</text>
+
+  <!-- ==================== 底部结论（红强调） ==================== -->
+  <line x1="248" y1="390" x2="248" y2="416" stroke="#64748b" stroke-width="2" marker-end="url(#arr-gray)"/>
+  <line x1="712" y1="390" x2="712" y2="416" stroke="#2563eb" stroke-width="2" marker-end="url(#arr-blue)"/>
+
+  <rect x="200" y="424" width="560" height="48" rx="8" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="480" y="453" text-anchor="middle" font-size="16" font-weight="bold" fill="#dc2626">材料数据的常态是按列分析 → 列存储是匹配的引擎</text>
+</svg>
