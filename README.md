@@ -35,6 +35,13 @@
 
 - [《理工科科研，该用什么数据库？》](./ai4mat/materials-database-selection.md) — 关于科研数据管理为什么不需要数据库服务，以及 SQLite + DuckDB 的组合方案。
 
+## 相关项目
+
+- [OpenAaaS](https://github.com/Wolido/OpenAaaS) — Agent-to-Agent 编排网络，将本仓库讨论的子智能体委派与隔离模式扩展到了跨机器的能力网络层面。
+- [subagent-isolation](https://github.com/Wolido/subagent-isolation) — pi 扩展，强制剥夺主 agent 的 write/edit/bash 权限，与[《主智能体的能力约束》](./agents/capability-constraint.md)的架构决策直接对应。
+- [tdd-guard](https://github.com/Wolido/tdd-guard) — pi 扩展，用流程闸门硬约束 TDD 流程，即[《用 TDD 约束智能体》](./agents/tdd-for-agents.md)中描述的 RED token 状态机实现。
+- [hea_ducklake](https://github.com/Wolido/hea_ducklake) — DuckDB 在高熵合金描述符数据上的实践，对应[《理工科科研，该用什么数据库？》](./ai4mat/materials-database-selection.md)中的 SQLite + DuckDB 组合方案。
+
 ## 说明
 
 观点反映写作时的实践背景，工具版本可能已变化。内容采用 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 协议。
