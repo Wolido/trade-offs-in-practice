@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 620" width="880" font-family="system-ui, sans-serif">
+  <title>tdd-guard 的 RED 令牌状态机：tester 成功授予一次性令牌，无令牌时派 coder 即在派遣层被拦截</title>
+
+  <defs>
+    <!-- 蓝色实线箭头：refX=0，底边在 x=0、尖端在 x=8，线端点连接底边中点 -->
+    <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/>
+    </marker>
+    <!-- 灰色箭头：用于入口箭头、失败自循环与虚线例外路径 -->
+    <marker id="arr-gray" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <!-- 背景（白色卡片，GitHub 深色模式下依然可读） -->
+  <rect width="880" height="620" fill="#ffffff"/>
+  <rect x="1" y="1" width="878" height="618" rx="8" fill="none" stroke="#e2e8f0"/>
+
+  <!-- ============ 入口：session_start ============ -->
+  <g>
+    <rect x="100" y="40" width="240" height="36" rx="18" fill="#64748b"/>
+    <text x="220" y="64" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">session_start（会话开始）</text>
+    <!-- 入口箭头：尖端顶住无令牌状态框上边缘（y=116） -->
+    <line x1="220" y1="76" x2="220" y2="108" stroke="#64748b" stroke-width="2" marker-end="url(#arr-gray)"/>
+  </g>
+
+  <!-- ============ 状态 S0：无令牌 · 闸门关闭 ============ -->
+  <g>
+    <rect x="60" y="116" width="320" height="140" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="1.5"/>
+    <path d="M68,116 H372 A8,8 0 0 1 380,124 V150 H60 V124 A8,8 0 0 1 68,116 Z" fill="#dc2626"/>
+    <text x="220" y="140" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">无令牌 · 闸门关闭</text>
+    <text x="80" y="182" font-size="14" fill="#334155">RED 令牌：未授予</text>
+    <text x="80" y="208" font-size="14" fill="#334155">派 tester：正常执行</text>
+    <text x="80" y="234" font-size="14" fill="#dc2626">派 coder：拦截（block）</text>
+  </g>
+
+  <!-- ============ 状态 S1：有 RED 令牌 · 闸门打开 ============ -->
+  <g>
+    <rect x="500" y="116" width="320" height="140" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <path d="M508,116 H812 A8,8 0 0 1 820,124 V150 H500 V124 A8,8 0 0 1 508,116 Z" fill="#2563eb"/>
+    <text x="660" y="140" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">有 RED 令牌 · 闸门打开</text>
+    <text x="520" y="182" font-size="14" fill="#334155">RED 令牌：已授予（仅一枚）</text>
+    <text x="520" y="208" font-size="14" fill="#334155">派 coder：放行</text>
+    <text x="520" y="234" font-size="14" fill="#64748b">令牌随这次派遣消耗</text>
+  </g>
+
+  <!-- ============ 转换 1：授予令牌（S0 → S1，上方正交路径） ============ -->
+  <g>
+    <path d="M350,116 L350,88 L630,88 L630,108" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arr-blue)"/>
+    <text x="490" y="78" text-anchor="middle" font-size="14" fill="#2563eb">tester 成功（无错误）：授予 RED 令牌</text>
+  </g>
+
+  <!-- ============ 转换 2：消耗令牌（S1 → S0，下方正交路径） ============ -->
+  <g>
+    <path d="M630,256 L630,316 L310,316 L310,264" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arr-blue)"/>
+    <text x="470" y="340" text-anchor="middle" font-size="14" fill="#2563eb">派 coder：放行并消耗令牌</text>
+  </g>
+
+  <!-- ============ 转换 3：tester 失败自循环（不授牌，保持 S0） ============ -->
+  <g>
+    <path d="M100,256 L100,284 L160,284 L160,264" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arr-gray)"/>
+    <text x="130" y="306" text-anchor="middle" font-size="14" fill="#64748b">tester 失败/报错：不授牌</text>
+  </g>
+
+  <!-- ============ 转换 4：无令牌派 coder → 拦截（红色闸门档杆，不到达任何状态） ============ -->
+  <g>
+    <text x="418" y="164" text-anchor="middle" font-size="13" fill="#dc2626">tdd-guard</text>
+    <line x1="380" y1="200" x2="450" y2="200" stroke="#dc2626" stroke-width="2"/>
+    <rect x="454" y="176" width="8" height="48" rx="2" fill="#dc2626"/>
+    <text x="421" y="280" text-anchor="middle" font-size="14" fill="#dc2626">无令牌时派 coder：拦截</text>
+    <text x="421" y="302" text-anchor="middle" font-size="14" fill="#dc2626">返回原因：请先派 tester</text>
+  </g>
+
+  <!-- ============ 例外路径：[skip-tdd]（灰色虚线，无论有无令牌都放行） ============ -->
+  <g>
+    <!-- S1 → 例外：垂直虚线，长度 112 = 11×10+2，末端落在 dash 中段，与 marker 底边无缝衔接 -->
+    <path d="M660,256 L660,368" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arr-gray)"/>
+    <!-- S0 → 例外：折线虚线，累计长度 342 = 34×10+2，同样无缝衔接 -->
+    <path d="M290,256 L290,402 L486,402" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arr-gray)"/>
+    <rect x="494" y="376" width="326" height="90" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="657" y="402" text-anchor="middle" font-size="14" font-weight="bold" fill="#334155">显式例外路径</text>
+    <text x="657" y="426" text-anchor="middle" font-size="14" fill="#334155">task 字段含 [skip-tdd] 标记</text>
+    <text x="657" y="450" text-anchor="middle" font-size="14" fill="#334155">无论有无令牌，直接放行 coder</text>
+  </g>
+
+  <!-- ============ 图例 ============ -->
+  <g font-size="14" fill="#334155">
+    <line x1="192" y1="540" x2="220" y2="540" stroke="#2563eb" stroke-width="2" marker-end="url(#arr-blue)"/>
+    <text x="236" y="544">状态转换</text>
+    <line x1="362" y1="540" x2="394" y2="540" stroke="#dc2626" stroke-width="2"/>
+    <rect x="398" y="532" width="6" height="16" rx="1" fill="#dc2626"/>
+    <text x="412" y="544">拦截（状态不变）</text>
+    <!-- 虚线长度 32 = 3×10+2，末端落在 dash 中段 -->
+    <line x1="594" y1="540" x2="626" y2="540" stroke="#64748b" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arr-gray)"/>
+    <text x="642" y="544">例外路径</text>
+  </g>
+
+  <text x="440" y="580" text-anchor="middle" font-size="14" fill="#64748b">注：RED 令牌为一次性：tester 成功授予，派 coder 即消耗；被拦截后可补派 tester 或改用 [skip-tdd]。</text>
+</svg>
