@@ -34,6 +34,7 @@
 ### AI 辅助材料研究（ai4mat/）
 
 - [《理工科科研，该用什么数据库？》](./ai4mat/materials-database-selection.md) — 关于科研数据管理为什么不需要数据库服务，以及 SQLite + DuckDB 的组合方案。
+- [《不搬数据，蒸馏 Administrator.skill：OpenAaaS 的范式转移》](./ai4mat/distill-administrator-skill.md) — OpenAaaS 的设计博客收录：材料数据共享为什么要从"搬数据"转向"蒸馏管理员"。
 
 ## 相关项目
 
