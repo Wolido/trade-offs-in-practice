@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" width="880" font-family="system-ui, sans-serif">
+  <title>提示词的多来源拼合：构建者直接可控的少数与直接控制之外的多数，共同拼成运行时实际生效的提示词全集</title>
+
+  <defs>
+    <marker id="arr-gray" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <!-- 背景（白色卡片，GitHub 深色模式下依然可读） -->
+  <rect width="880" height="520" fill="#ffffff"/>
+  <rect x="1" y="1" width="878" height="518" rx="8" fill="none" stroke="#e2e8f0"/>
+
+  <!-- ============ 左侧：构建者直接可控（蓝） ============ -->
+  <text x="230" y="52" text-anchor="middle" font-size="15" font-weight="bold" fill="#2563eb">构建者直接可控</text>
+  <text x="230" y="74" text-anchor="middle" font-size="13" fill="#64748b">可见 · 可改 · 可探测</text>
+
+  <g font-size="14" fill="#334155">
+    <rect x="60" y="92" width="340" height="38" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="230" y="116" text-anchor="middle">agent 定义文件</text>
+
+    <rect x="60" y="140" width="340" height="38" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="230" y="164" text-anchor="middle">项目指令文件（AGENTS.md 等）</text>
+
+    <rect x="60" y="188" width="340" height="38" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="230" y="212" text-anchor="middle">skill</text>
+
+    <rect x="60" y="236" width="340" height="38" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="230" y="260" text-anchor="middle">对话中的指示</text>
+  </g>
+
+  <!-- ============ 左侧：构建者直接控制之外 ============ -->
+  <text x="230" y="336" text-anchor="middle" font-size="15" font-weight="bold" fill="#64748b">构建者直接控制之外</text>
+  <text x="230" y="360" text-anchor="middle" font-size="13" fill="#64748b">可见性低 · 还会静默变动</text>
+
+  <g font-size="14" fill="#334155">
+    <rect x="60" y="384" width="340" height="38" rx="6" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+    <text x="230" y="408" text-anchor="middle">框架自带系统提示词</text>
+
+    <rect x="60" y="440" width="340" height="38" rx="6" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+    <text x="230" y="464" text-anchor="middle">工具描述注入</text>
+  </g>
+
+  <!-- ============ 汇聚箭头 ============ -->
+  <g stroke-width="1.5" fill="none">
+    <line x1="402" y1="111" x2="572" y2="228" stroke="#64748b" marker-end="url(#arr-gray)"/>
+    <line x1="402" y1="159" x2="572" y2="248" stroke="#64748b" marker-end="url(#arr-gray)"/>
+    <line x1="402" y1="207" x2="572" y2="268" stroke="#64748b" marker-end="url(#arr-gray)"/>
+    <line x1="402" y1="255" x2="572" y2="288" stroke="#64748b" marker-end="url(#arr-gray)"/>
+    <line x1="402" y1="403" x2="572" y2="308" stroke="#64748b" marker-end="url(#arr-gray)"/>
+    <line x1="402" y1="459" x2="572" y2="328" stroke="#64748b" marker-end="url(#arr-gray)"/>
+  </g>
+
+  <!-- ============ 右侧：实际生效的提示词 ============ -->
+  <g>
+    <rect x="580" y="190" width="260" height="170" rx="8" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+    <text x="710" y="252" text-anchor="middle" font-size="17" font-weight="bold" fill="#334155">实际生效的提示词</text>
+    <text x="710" y="280" text-anchor="middle" font-size="13" fill="#64748b">运行时拼合的全集</text>
+    <line x1="600" y1="300" x2="820" y2="300" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="710" y="330" text-anchor="middle" font-size="13" fill="#64748b">模型每一轮读到的就是它</text>
+  </g>
+</svg>

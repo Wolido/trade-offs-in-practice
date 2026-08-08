@@ -30,6 +30,7 @@
 - [《为什么主流框架不做硬隔离》](./agents/why-mainstream-does-not.md) — 分析 Codex、Claude Code 等商业框架在隔离 trade-off 上选择另一端的原因。
 - [《上下文决定智能体的上限》](./agents/context-matters.md) — 关于给智能体喂上下文的重要性，以及三个实践方法：语音海聊、会议逐字稿、交接清单。
 - [《用 TDD 约束智能体》](./agents/tdd-for-agents.md) — 关于用流程闸门硬约束 TDD 流程、提示词软约束为何失效，以及 tdd-guard 扩展的实现。
+- [《提示词的组织原则：你以为的和实际生效的》](./agents/prompt-organization.md) — 关于提示词的多来源拼合与可见性落差，以及长度、归属、AGENTS.md 取舍与委派时动态构建的组织原则。
 
 ### AI 辅助材料研究（ai4mat/）
 
