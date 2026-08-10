@@ -37,6 +37,10 @@
 - [《理工科科研，该用什么数据库？》](./ai4mat/materials-database-selection.md) — 关于科研数据管理为什么不需要数据库服务，以及 SQLite + DuckDB 的组合方案。
 - [《不搬数据，蒸馏 Administrator.skill：OpenAaaS 的范式转移》](./ai4mat/distill-administrator-skill.md) — OpenAaaS 的设计博客收录：材料数据共享为什么要从"搬数据"转向"蒸馏管理员"。
 
+### 登味十足（dengwei/）
+
+- [《什么是缓存命中》— 你早就该知道，但是总是懒得查的知识](./dengwei/what-is-cache-hit.md) — 随笔：API 账单上的缓存命中，是相同前缀的提示词按折扣价复用上次的计算；吃红利只需一条，静态内容放前面。
+
 ## 相关项目
 
 - [OpenAaaS](https://github.com/Wolido/OpenAaaS) — Agent-to-Agent 编排网络，将本仓库讨论的子智能体委派与隔离模式扩展到了跨机器的能力网络层面。

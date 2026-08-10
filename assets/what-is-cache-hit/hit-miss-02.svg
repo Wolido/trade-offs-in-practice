@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" width="960" font-family="system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <title>缓存命中与失配的决策流：比对请求前缀与已缓存前缀，一致则跳过 prefill 直接取已缓存 K/V（折扣价），不一致则全量 prefill 重算（原价），两条分支汇合到 decode</title>
+
+  <defs>
+    <!-- 主流程箭头（深灰）：refX=0，底边在 x=0、尖端在 x=8，线端点连接底边中点 -->
+    <marker id="arr-dark" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#334155"/>
+    </marker>
+    <!-- 命中分支箭头（蓝）：同上 -->
+    <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/>
+    </marker>
+    <!-- 失配分支箭头（红）：同上 -->
+    <marker id="arr-red" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- 背景（白色卡片，GitHub 深色模式下依然可读） -->
+  <rect width="960" height="580" fill="#ffffff"/>
+  <rect x="1" y="1" width="958" height="578" rx="8" fill="none" stroke="#e2e8f0"/>
+
+  <text x="480" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="#334155">缓存命中与失配：前缀级的开关</text>
+
+  <!-- ============ 顶部入口：新请求 ============ -->
+  <g>
+    <rect x="330" y="52" width="300" height="64" rx="8" fill="#ffffff" stroke="#64748b" stroke-width="1.5"/>
+    <text x="480" y="78" text-anchor="middle" font-size="15" font-weight="bold" fill="#334155">新请求</text>
+    <text x="480" y="100" text-anchor="middle" font-size="13" fill="#64748b">稳定前缀 + 新增内容</text>
+  </g>
+
+  <!-- 箭头：新请求 → 判定菱形；线端点 152，尖端 160 顶住菱形上顶点 -->
+  <line x1="480" y1="116" x2="480" y2="152" stroke="#334155" stroke-width="2" marker-end="url(#arr-dark)"/>
+
+  <!-- ============ 判定：前缀比对 ============ -->
+  <polygon points="480,160 620,220 480,280 340,220" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+  <text x="480" y="214" text-anchor="middle" font-size="15" font-weight="bold" fill="#334155">前缀逐字符一致？</text>
+  <text x="480" y="236" text-anchor="middle" font-size="13" fill="#64748b">与已缓存前缀比对</text>
+
+  <!-- ============ 左支：一致 → 命中（蓝） ============ -->
+  <!-- 肘形箭头：菱形左顶点 → 命中框；线端点 (180,302)，尖端 (180,310) 顶住命中框上边缘 -->
+  <polyline points="340,220 180,220 180,302" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <text x="215" y="206" text-anchor="middle" font-size="14" font-weight="bold" fill="#2563eb">一致</text>
+
+  <g>
+    <rect x="60" y="310" width="240" height="116" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <path d="M68,310 H292 A8,8 0 0 1 300,318 V342 H60 V318 A8,8 0 0 1 68,310 Z" fill="#2563eb"/>
+    <text x="180" y="332" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">缓存命中</text>
+
+    <text x="180" y="366" text-anchor="middle" font-size="14" fill="#334155">跳过 prefill</text>
+    <text x="180" y="388" text-anchor="middle" font-size="13" fill="#334155">直接取已存好的 K/V</text>
+    <text x="180" y="412" text-anchor="middle" font-size="14" font-weight="bold" fill="#2563eb">命中，折扣价</text>
+  </g>
+
+  <!-- ============ 右支：不一致 → 失配（红） ============ -->
+  <!-- 肘形箭头：菱形右顶点 → 失配框；线端点 (780,302)，尖端 (780,310) 顶住失配框上边缘 -->
+  <polyline points="620,220 780,220 780,302" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arr-red)"/>
+  <text x="745" y="206" text-anchor="middle" font-size="14" font-weight="bold" fill="#dc2626">不一致</text>
+
+  <g>
+    <rect x="660" y="310" width="240" height="116" rx="8" fill="#ffffff" stroke="#dc2626" stroke-width="1.5"/>
+    <path d="M668,310 H892 A8,8 0 0 1 900,318 V342 H660 V318 A8,8 0 0 1 668,310 Z" fill="#dc2626"/>
+    <text x="780" y="332" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">缓存失配</text>
+
+    <text x="780" y="366" text-anchor="middle" font-size="14" fill="#334155">从头重算整段输入</text>
+    <text x="780" y="388" text-anchor="middle" font-size="13" fill="#334155">全量 prefill，无折扣</text>
+    <text x="780" y="412" text-anchor="middle" font-size="14" font-weight="bold" fill="#dc2626">失配，原价</text>
+  </g>
+
+  <!-- ============ 汇合：两条分支 → decode ============ -->
+  <!-- 左汇合箭头：线端点 (322,520)，尖端 (330,520) 顶住 decode 左边缘 -->
+  <polyline points="180,426 180,520 322,520" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <!-- 右汇合箭头：线端点 (638,520)，尖端 (630,520) 顶住 decode 右边缘 -->
+  <polyline points="780,426 780,520 638,520" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arr-red)"/>
+
+  <g>
+    <rect x="330" y="470" width="300" height="64" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="480" y="496" text-anchor="middle" font-size="15" font-weight="bold" fill="#334155">decode：逐个生成输出 token</text>
+    <text x="480" y="518" text-anchor="middle" font-size="13" fill="#64748b">无论命中与否，此阶段相同</text>
+  </g>
+
+  <text x="480" y="562" text-anchor="middle" font-size="13" fill="#64748b">注：命中是前缀级开关——前缀逐字符一致才命中；失配的代价是整段 prefill 重算。</text>
+</svg>
