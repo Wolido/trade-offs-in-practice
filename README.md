@@ -39,7 +39,7 @@
 
 ### 登味十足（dengwei/）
 
-- [《什么是缓存命中》— 你早就该知道，但是总是懒得查的知识](./dengwei/what-is-cache-hit.md)
+- [《什么是缓存命中》](./dengwei/what-is-cache-hit.md) — 你早就该知道，但是总是懒得查的知识
 
 ## 相关项目
 
