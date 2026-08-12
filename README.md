@@ -40,6 +40,7 @@
 ### 登味十足（dengwei/）
 
 - [《什么是缓存命中》](./dengwei/what-is-cache-hit.md) — 你早就该知道，但是总是懒得查的知识
+- [《为什么缓存命中率差异巨大》](./dengwei/cache-hit-rates-differ.md) — 同一个任务、同一个 API，不同智能体工具的缓存命中率为什么差出一倍以上
 
 ## 相关项目
 

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 480" width="760" font-family="system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <title>变化点位置决定缓存命中率：四个 100K token 请求输入场景对比，变化点越靠后命中率越高（98% / 50% / 5% / 约2%），从变化点开始往后全部失配</title>
+
+  <defs>
+    <!-- 条带圆角裁切：每个条带 560×40，rx=6 -->
+    <clipPath id="bar1"><rect x="40" y="100" width="560" height="40" rx="6"/></clipPath>
+    <clipPath id="bar2"><rect x="40" y="192" width="560" height="40" rx="6"/></clipPath>
+    <clipPath id="bar3"><rect x="40" y="284" width="560" height="40" rx="6"/></clipPath>
+    <clipPath id="bar4"><rect x="40" y="376" width="560" height="40" rx="6"/></clipPath>
+  </defs>
+
+  <!-- 背景（白色卡片，GitHub 深色模式下依然可读） -->
+  <rect width="760" height="480" fill="#ffffff"/>
+  <rect x="1" y="1" width="758" height="478" rx="8" fill="none" stroke="#e2e8f0"/>
+
+  <text x="380" y="34" text-anchor="middle" font-size="17" font-weight="bold" fill="#334155">缓存命中率 = 匹配前缀长度 ÷ 总输入长度</text>
+  <text x="380" y="56" text-anchor="middle" font-size="13" fill="#64748b">每个条带 = 一次 100K token 的请求输入；从变化点开始往后全部失配，变化点越靠后命中率越高</text>
+
+  <!-- ============ 场景 1：每轮只在尾部追加 2K 新消息 → 98% ============ -->
+  <text x="40" y="88" font-size="14" font-weight="bold" fill="#334155">1. 每轮只在尾部追加 2K 新消息</text>
+  <g clip-path="url(#bar1)">
+    <rect x="40" y="100" width="549" height="40" fill="#2563eb"/>
+    <rect x="589" y="100" width="11" height="40" fill="#dc2626"/>
+  </g>
+  <rect x="40" y="100" width="560" height="40" rx="6" fill="none" stroke="#334155" stroke-width="1"/>
+  <text x="314" y="126" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">命中</text>
+  <!-- 变化点标记：三角形尖端顶住条带下边缘 x=589 -->
+  <path d="M584,148 L594,148 L589,140 Z" fill="#334155"/>
+  <text x="624" y="117" font-size="13" fill="#64748b">命中率</text>
+  <text x="624" y="134" font-size="20" font-weight="bold" fill="#2563eb">98%</text>
+
+  <!-- ============ 场景 2：在 50K 处插入一条工具结果 → 50% ============ -->
+  <text x="40" y="180" font-size="14" font-weight="bold" fill="#334155">2. 在 50K 处插入一条工具结果</text>
+  <g clip-path="url(#bar2)">
+    <rect x="40" y="192" width="280" height="40" fill="#2563eb"/>
+    <rect x="320" y="192" width="280" height="40" fill="#dc2626"/>
+  </g>
+  <rect x="40" y="192" width="560" height="40" rx="6" fill="none" stroke="#334155" stroke-width="1"/>
+  <text x="180" y="218" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">命中</text>
+  <text x="460" y="218" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">失配</text>
+  <!-- 变化点标记：x=320 -->
+  <path d="M315,240 L325,240 L320,232 Z" fill="#334155"/>
+  <text x="624" y="209" font-size="13" fill="#64748b">命中率</text>
+  <text x="624" y="226" font-size="20" font-weight="bold" fill="#2563eb">50%</text>
+
+  <!-- ============ 场景 3：在 5K 处压缩重写早期历史 → 5% ============ -->
+  <text x="40" y="272" font-size="14" font-weight="bold" fill="#334155">3. 在 5K 处压缩重写早期历史</text>
+  <g clip-path="url(#bar3)">
+    <rect x="40" y="284" width="28" height="40" fill="#2563eb"/>
+    <rect x="68" y="284" width="532" height="40" fill="#dc2626"/>
+  </g>
+  <rect x="40" y="284" width="560" height="40" rx="6" fill="none" stroke="#334155" stroke-width="1"/>
+  <text x="334" y="310" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">失配</text>
+  <!-- 变化点标记：x=68 -->
+  <path d="M63,332 L73,332 L68,324 Z" fill="#334155"/>
+  <text x="624" y="301" font-size="13" fill="#64748b">命中率</text>
+  <text x="624" y="318" font-size="20" font-weight="bold" fill="#dc2626">5%</text>
+
+  <!-- ============ 场景 4：系统提示词开头塞了跨天变化的日期 → 约 2% ============ -->
+  <text x="40" y="364" font-size="14" font-weight="bold" fill="#334155">4. 系统提示词开头塞了跨天变化的日期</text>
+  <g clip-path="url(#bar4)">
+    <rect x="40" y="376" width="11" height="40" fill="#2563eb"/>
+    <rect x="51" y="376" width="549" height="40" fill="#dc2626"/>
+  </g>
+  <rect x="40" y="376" width="560" height="40" rx="6" fill="none" stroke="#334155" stroke-width="1"/>
+  <text x="325" y="402" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">失配</text>
+  <!-- 变化点标记：x=51 -->
+  <path d="M46,424 L56,424 L51,416 Z" fill="#334155"/>
+  <text x="624" y="393" font-size="13" fill="#64748b">命中率</text>
+  <text x="624" y="410" font-size="20" font-weight="bold" fill="#dc2626">≈2%</text>
+
+  <!-- ============ 底部图例（水平条带） ============ -->
+  <line x1="40" y1="444" x2="720" y2="444" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="98" y="455" width="16" height="12" rx="2" fill="#2563eb"/>
+  <text x="122" y="466" font-size="13" fill="#334155">命中区（已缓存，跳过重算）</text>
+  <rect x="331" y="455" width="16" height="12" rx="2" fill="#dc2626"/>
+  <text x="355" y="466" font-size="13" fill="#334155">失配区（从变化点开始，全量重算）</text>
+  <path d="M603,467 L615,467 L609,455 Z" fill="#334155"/>
+  <text x="623" y="466" font-size="13" fill="#334155">变化点</text>
+</svg>
