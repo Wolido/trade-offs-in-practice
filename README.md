@@ -31,6 +31,7 @@
 - [《上下文决定智能体的上限》](./agents/context-matters.md) — 关于给智能体喂上下文的重要性，以及三个实践方法：语音海聊、会议逐字稿、交接清单。
 - [《用 TDD 约束智能体》](./agents/tdd-for-agents.md) — 关于用流程闸门硬约束 TDD 流程、提示词软约束为何失效，以及 tdd-guard 扩展的实现。
 - [《提示词的组织原则：你以为的和实际生效的》](./agents/prompt-organization.md) — 关于提示词的多来源拼合与可见性落差，以及长度、归属、AGENTS.md 取舍与委派时动态构建的组织原则。
+- [《委派还是协作：两种多智能体形态的判据》](./agents/delegation-vs-collaboration.md) — 对比主子模式与多智能体团队两种形态，给出形态选择的判据。
 
 ### AI 辅助材料研究（ai4mat/）
 
