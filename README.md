@@ -29,6 +29,7 @@
 - [《Skill 的作用域隔离：让每个智能体只看见自己需要的技能》](./agents/skill-isolation.md) — 关于 skill 按角色静态分区、互相不可见的做法和动机。
 - [《为什么主流框架不做硬隔离》](./agents/why-mainstream-does-not.md) — 分析 Codex、Claude Code 等商业框架在隔离 trade-off 上选择另一端的原因。
 - [《上下文决定智能体的上限》](./agents/context-matters.md) — 关于给智能体喂上下文的重要性，以及三个实践方法：语音海聊、会议逐字稿、交接清单。
+- [《为什么不把主上下文 fork 给子智能体》](./agents/why-not-fork-context.md) — 关于"把主上下文继承给子智能体"为什么在缓存与跨模型读取上双输，以及为什么委派任务文本是唯一经济通道。
 - [《用 TDD 约束智能体》](./agents/tdd-for-agents.md) — 关于用流程闸门硬约束 TDD 流程、提示词软约束为何失效，以及 tdd-guard 扩展的实现。
 - [《提示词的组织原则：你以为的和实际生效的》](./agents/prompt-organization.md) — 关于提示词的多来源拼合与可见性落差，以及长度、归属、AGENTS.md 取舍与委派时动态构建的组织原则。
 - [《委派还是协作：两种多智能体形态的判据》](./agents/delegation-vs-collaboration.md) — 对比主子模式与多智能体团队两种形态，给出形态选择的判据。
