@@ -33,6 +33,7 @@
 - [《用 TDD 约束智能体》](./agents/tdd-for-agents.md) — 关于用流程闸门硬约束 TDD 流程、提示词软约束为何失效，以及 tdd-guard 扩展的实现。
 - [《提示词的组织原则：你以为的和实际生效的》](./agents/prompt-organization.md) — 关于提示词的多来源拼合与可见性落差，以及长度、归属、AGENTS.md 取舍与委派时动态构建的组织原则。
 - [《委派还是协作：两种多智能体形态的判据》](./agents/delegation-vs-collaboration.md) — 对比主子模式与多智能体团队两种形态，给出形态选择的判据。
+- [《把失败当作接口来设计：harness 的失败语义》](./agents/failure-semantics.md) — 关于把模型做错时系统的呈现当作接口来设计，以及 async-subagent-isolation 的失败防护实践。
 
 ### AI 辅助材料研究（ai4mat/）
 
