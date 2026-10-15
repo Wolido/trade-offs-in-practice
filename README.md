@@ -59,8 +59,8 @@
 
 ## 作者
 
-- ![Wolido](https://github.com/Wolido.png?size=40) [Wolido](https://github.com/Wolido)
-- ![sekou1105](https://github.com/sekou1105.png?size=40) [sekou1105](https://github.com/sekou1105)
+- <img src="https://github.com/Wolido.png?size=80" width="20" height="20" alt="Wolido"> [Wolido](https://github.com/Wolido)
+- <img src="https://github.com/sekou1105.png?size=80" width="20" height="20" alt="sekou1105"> [sekou1105](https://github.com/sekou1105)
 
 ## 说明
 
