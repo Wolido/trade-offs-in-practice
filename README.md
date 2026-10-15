@@ -46,12 +46,21 @@
 - [《为什么缓存命中率差异巨大》](./dengwei/cache-hit-rates-differ.md) — 同一个任务、同一个 API，不同智能体工具的缓存命中率为什么差出一倍以上
 - [《把日期写进系统提示词》— 位置决定代价](./dengwei/date-in-system-prompt.md) — 把当前日期写进系统提示词，位置放在开头还是末尾，缓存代价完全不同
 
+### 推理与部署（ai-infra/）
+
+- [《大模型推理优化与负载均衡》](./ai-infra/llm-reasoning-optimization.md) — 从硬件摸底、模型与量化、并行策略到负载均衡的部署决策链，以及每一步的取舍依据。
+
 ## 相关项目
 
 - [OpenAaaS](https://github.com/Wolido/OpenAaaS) — Agent-to-Agent 编排网络，将本仓库讨论的子智能体委派与隔离模式扩展到了跨机器的能力网络层面。
 - [subagent-isolation](https://github.com/Wolido/subagent-isolation) — pi 扩展，强制剥夺主 agent 的 write/edit/bash 权限，与[《主智能体的能力约束》](./agents/capability-constraint.md)的架构决策直接对应。
 - [tdd-guard](https://github.com/Wolido/tdd-guard) — pi 扩展，用流程闸门硬约束 TDD 流程，即[《用 TDD 约束智能体》](./agents/tdd-for-agents.md)中描述的 RED token 状态机实现。
 - [hea_ducklake](https://github.com/Wolido/hea_ducklake) — DuckDB 在高熵合金描述符数据上的实践，对应[《理工科科研，该用什么数据库？》](./ai4mat/materials-database-selection.md)中的 SQLite + DuckDB 组合方案。
+
+## 作者
+
+- ![Wolido](https://github.com/Wolido.png?size=40) [Wolido](https://github.com/Wolido) — 维护者
+- ![sekou1105](https://github.com/sekou1105.png?size=40) [sekou1105](https://github.com/sekou1105) — 作者
 
 ## 说明
 
