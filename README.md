@@ -59,8 +59,8 @@
 
 ## 作者
 
-- ![Wolido](https://github.com/Wolido.png?size=40) [Wolido](https://github.com/Wolido) — 维护者
-- ![sekou1105](https://github.com/sekou1105.png?size=40) [sekou1105](https://github.com/sekou1105) — 作者
+- ![Wolido](https://github.com/Wolido.png?size=40) [Wolido](https://github.com/Wolido)
+- ![sekou1105](https://github.com/sekou1105.png?size=40) [sekou1105](https://github.com/sekou1105)
 
 ## 说明
 
