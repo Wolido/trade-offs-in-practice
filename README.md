@@ -49,6 +49,8 @@
 ### 推理与部署（ai-infra/）
 
 - [《大模型推理优化与负载均衡》](./ai-infra/llm-reasoning-optimization.md) — 从硬件摸底、模型与量化、并行策略到负载均衡的部署决策链，以及每一步的取舍依据。
+- [《大模型推理服务基础设施要求》](./ai-infra/llm-inference-infrastructure-requirements.md) — 从权重文件到可用 API 服务的部署前检查清单：显存预算（权重 + KV Cache + 状态 + 临时缓冲）、AOT 与 JIT 工具链的分工、九阶段启动验收与报错到基础设施层的映射。
+- [《大模型多实例负载均衡：构建高并发、高可用推理服务》](./ai-infra/llm-load-balancing.md) — OpenResty + Lua 的会话亲和路由设计：用临时预留补偿监控采样间隔、动态摘挂的两层阈值，以及采集失败、过载、转发异常三类故障语义的区分。
 
 ## 相关项目
 
