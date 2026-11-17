@@ -51,6 +51,8 @@
 - [《大模型推理优化与负载均衡》](./ai-infra/llm-reasoning-optimization.md) — 从硬件摸底、模型与量化、并行策略到负载均衡的部署决策链，以及每一步的取舍依据。
 - [《大模型推理服务基础设施要求》](./ai-infra/llm-inference-infrastructure-requirements.md) — 从权重文件到可用 API 服务的部署前检查清单：显存预算（权重 + KV Cache + 状态 + 临时缓冲）、AOT 与 JIT 工具链的分工、九阶段启动验收与报错到基础设施层的映射。
 - [《大模型多实例负载均衡：构建高并发、高可用推理服务》](./ai-infra/llm-load-balancing.md) — OpenResty + Lua 的会话亲和路由设计：用临时预留补偿监控采样间隔、动态摘挂的两层阈值，以及采集失败、过载、转发异常三类故障语义的区分。
+- [《DeepInfer VS vLLM，区别在哪里？》](./ai-infra/llm-deepseek-inference-analysis.md) — 拆解 DeepInfer 与 vLLM 的分野：CED 缩短 prefill 路径、CSA2 跨层复用全局 KV、SWA 只重放 128 token，以及放弃 TP、用 EP + EPLB 换吞吐的取舍。
+- [《LSA 长上下文推理实测：Qwen3.8-27B 在A40显卡上的收益与边界》](./ai-infra/llm-qwen3.8-27b-lsa-analysis.md) — 2×A40 实测 Qwen3.8-27B 的 LSA：语义簇索引加固定注意力预算换来的 128K 单请求 39% TTFT 降幅，及其在短上下文、高并发与准确率上的收益边界。
 
 ## 相关项目
 
